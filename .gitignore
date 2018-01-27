@@ -19,6 +19,9 @@
 *.ipr
 *.iws
 
+out
+out/*
+
 # Always ignore these directories/files
 target
 build
