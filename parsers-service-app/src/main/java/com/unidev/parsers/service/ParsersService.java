@@ -1,8 +1,10 @@
 package com.unidev.parsers.service;
 
 import com.unidev.parsers.model.Parser;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,11 @@ public class ParsersService {
     private List<Parser> parserList;
 
     public ParsersService(@Autowired(required = false) List<Parser> parserList) {
-        this.parserList = parserList;
+        if (parserList == null) {
+            this.parserList = Collections.emptyList();
+        } else {
+            this.parserList = parserList;
+        }
     }
 
     public List<Parser> getParserList() {
@@ -26,6 +32,10 @@ public class ParsersService {
             }
         }
         return Optional.empty();
+    }
+
+    public List<String> parserIds() {
+        return parserList.stream().map(Parser::parserId).collect(Collectors.toList());
     }
 
 }
