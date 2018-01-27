@@ -12,6 +12,8 @@ public class TestParser implements Parser {
 
     @Override
     public ParserResponse process(ParserRequest parserRequest) {
-        return new ParserResponse();
+        ParserResponse parserResponse = new ParserResponse();
+        parserResponse.put("test-key", "test-value");
+        return parserResponse;
     }
 }
